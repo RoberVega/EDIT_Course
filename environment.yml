@@ -1,0 +1,11 @@
+name: edit-course
+dependencies:
+  - python>=3.9
+  - pandas
+  - jupyterlab
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - openpyxl
+  - ipywidgets
+  - conda-forge::typeguard
