@@ -5,8 +5,8 @@ new or created using existing columns*/
 # Let's check using the actor table
 # Creating a person_role with the value 'actor' 
 
-select *, 'actor' as person_role
-from sakila.actor;
+select *, 'Police Officer' as Responsible
+from EDIT_DB.GreaterManchesterCrime;
 
 # We will learn more advanced stuff using if else
 # later
@@ -16,22 +16,27 @@ from sakila.actor;
 
 # Notice how we are using a function here for the first
 # time
-select first_name, last_name, concat(first_name, last_name) as full_name
-from sakila.actor;
+select Location, LSOA, concat(Location, LSOA) as full_address
+from EDIT_DB.GreaterManchesterCrime;
 
-# Something's odd! We can still add a space between the first and last name
-select first_name, last_name, concat(first_name, ' ', last_name) as full_name
-from sakila.actor;
+# Something's odd! We can still add a comma and a space between the first and last name
+select Location, LSOA, concat(Location, ', ', LSOA) as full_address
+from EDIT_DB.GreaterManchesterCrime;
 
 # We can also create new columns based on mathematical
 # expressions
-select *, actor_id * 100
-from sakila.actor;
+# We add an extra numerical column corresponding to a Crime number
+ALTER TABLE EDIT_DB.GreaterManchesterCrime ADD COLUMN CrimeNumber INT UNIQUE NOT NULL AUTO_INCREMENT FIRST;
+select * from EDIT_DB.GreaterManchesterCrime;
+
+  
+select * , CrimeNumber * 100
+from EDIT_DB.GreaterManchesterCrime;
 
 # Most mathematical operations work the same way
 # as they do in the real world
-select *, (actor_id * 100)+10
-from sakila.actor;
+select *, (CrimeNumber * 100)+10
+from EDIT_DB.GreaterManchesterCrime;
 
 # * is for multiplication
 # / is for division
@@ -39,8 +44,8 @@ from sakila.actor;
 # - is for subtracting
 
 # Example of division:
-select *, (actor_id / 100)+10
-from sakila.actor;
+select *, (CrimeNumber/100)+10
+from EDIT_DB.GreaterManchesterCrime;
 
 # There are also other commonly used expressions
 # such as logarithms or exponentials

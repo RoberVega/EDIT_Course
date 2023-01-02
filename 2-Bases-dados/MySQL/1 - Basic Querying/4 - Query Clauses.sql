@@ -13,10 +13,15 @@
  by some key. The simpler example is to apply a mean across a column
  grouped by some other column - let's see one example!
  */
- 
- select rating, avg(rental_rate) as avg_rental_rate, avg(length) as avg_length
- from sakila.film
- group by rating;
+ALTER TABLE EDIT_DB.GreaterManchesterCrime ADD CriminalNumber Int;
+UPDATE EDIT_DB.GreaterManchesterCrime SET CriminalNumber = FLOOR(RAND()*(4-1)+1) WHERE CrimeNumber > 1;
+
+select * 
+from EDIT_DB.GreaterManchesterCrime;
+
+select Type, avg(CriminalNumber) as avg_number_of_criminals
+from EDIT_DB.GreaterManchesterCrime
+group by Type;
  
 /* Notice how we have the values aggregated by the other
 column - that may also called key in some contexts */
@@ -27,41 +32,38 @@ by filtering based on information created
 grouped information */
 
 # Notice the following - this will yield in an error:
-select rating, avg(rental_rate) as avg_rental_rate
-from sakila.film
-where avg_rental_rate>3
-group by rating;
+select Type, avg(CriminalNumber) as avg_number_of_criminals
+from EDIT_DB.GreaterManchesterCrime
+where avg_number_of_criminals>2
+group by Type;
 
 /* Because the column avg_rental_rate does not exist in the original table
 To filter something created during the query, we need to use having */
 
-select rating, avg(rental_rate) as avg_rental_rate
-from sakila.film
-group by rating
-having avg_rental_rate>3;
+select Type, avg(CriminalNumber) as avg_number_of_criminals
+from EDIT_DB.GreaterManchesterCrime
+group by Type
+having avg_number_of_criminals>2;
 
 # This also happens with columns created with alias
-select rating, rental_rate as rental_rate_1
-from sakila.film
-where rental_rate_1 > 3;
+select Type, CriminalNumber as number_of_criminals
+from EDIT_DB.GreaterManchesterCrime
+where number_of_criminals > 2;
 
-select rating, rental_rate as rental_rate_1
-from sakila.film
-having rental_rate_1 > 3;
 
 /* Order by is another clause that we can use 
 after all the other clauses, it sorts 
 the resulting table by what we want
 */
 
-select title, description, length 
-from sakila.film 
-where length > 100
-order by length;
+select Type, CriminalNumber, LSOA 
+from EDIT_DB.GreaterManchesterCrime
+where CriminalNumber > 2
+order by LSOA;
 
 # You can also order descendingly with the keyword desc
-select title, description, length 
-from sakila.film 
-where length > 100
-order by length desc;
+select Type, CriminalNumber, LSOA 
+from EDIT_DB.GreaterManchesterCrime
+where CriminalNumber > 2
+order by LSOA desc;
 

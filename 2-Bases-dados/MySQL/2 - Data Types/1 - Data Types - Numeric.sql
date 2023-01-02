@@ -9,10 +9,10 @@ but we will go through the most relevant ones.
 
 # We can obtain the data types of a specific table using 
 # the command DESCRIBE
-DESCRIBE sakila.film;
+DESCRIBE EDIT_DB.GreaterManchesterCrime;
 
-/* Notice that in the sakila.film
-we have the following numeric column types:
+/* Notice that in the EDIT_DB.GreaterManchesterCrime
+we have only the numeric int types. There are other ones like:
 - smallint
 - tinyint
 - decimal
@@ -30,26 +30,26 @@ may have other names in other SQL implementations
 With numeric types we can perform numerical calculations
 */
 
-select rental_rate, rental_rate*4 as calc
-from sakila.film;
+select CriminalNumber, CriminalNumber*4 as calc
+from EDIT_DB.GreaterManchesterCrime;
+
+select * from EDIT_DB.GreaterManchesterCrime;
 
 # We can also do this with datetime columns
 # Although the result is a bit meaningless
-select last_update, last_update*4 as calc
-from sakila.film;
+select CrimeTS, CrimeTS*4 as calc
+from EDIT_DB.GreaterManchesterCrime;
 
 # We can't do this with text columns! the result 
 # will be the same for the entire row 
-select title, title*4 as calc
-from sakila.film;
+select Location, Location*4 as calc
+from EDIT_DB.GreaterManchesterCrime;
 
 # We can't also apply mathematical functions
 # to character columns as that throws a NULL result
-select title, log(title) as calc
-from sakila.film;
+select Location, Log(Location) as calc
+from EDIT_DB.GreaterManchesterCrime;
 
-select title, log(rental_rate) as calc
-from sakila.film;
 
 /* A recap on numeric data types:
 - bit (binary or boolean value)

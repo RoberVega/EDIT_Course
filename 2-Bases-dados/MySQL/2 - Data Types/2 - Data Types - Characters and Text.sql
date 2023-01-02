@@ -9,12 +9,13 @@ but we will go through the most relevant ones.
 
 # We can obtain the data types of a specific table using 
 # the command DESCRIBE
-DESCRIBE sakila.film;
+DESCRIBE EDIT_DB.GreaterManchesterCrime;
 
-/* Notice that in the sakila.film
+/* Notice that in the EDIT_DB.GreaterManchesterCrime
 we have the following text columns:
 - text
 - varchar
+but these are not unique, we could also have:
 - enum
 - set
 
@@ -27,25 +28,25 @@ values, enum allows only 1.
 */
 
 # There are certain functions only used by strings:
-select title, concat(title, title) as calc
-from sakila.film;
+select Location, concat(Location, Location) as calc
+from EDIT_DB.GreaterManchesterCrime;
 
 # What if we try with a integer column?
 # We end up doing an "implicit" conversion
-# SQL automatically converts the column rental_rate to
+# SQL automatically converts the column CrimeNumber to
 # text before doing the calculation
-select title, concat(rental_rate, rental_rate) as calc
-from sakila.film;
+select CrimeNumber, concat(CrimeNumber, CrimeNumber) as calc
+from EDIT_DB.GreaterManchesterCrime;
 
 # Let's just create a temporary table to see the type
 # of the calc column - we'll study how to create tables next
 
-CREATE TEMPORARY TABLE sakila.temp_table as
-select title, concat(rental_rate, rental_rate) as calc
-from sakila.film;
+CREATE TEMPORARY TABLE EDIT_DB.temp_table as
+select Location, concat(CrimeNumber, CrimeNumber) as calc
+from EDIT_DB.GreaterManchesterCrime;
 
-# As you can check the calc is a varchar(12) column
-# 12 because that was the maximum length created by the 
-# concat(rental_rate, rental_rate) expression
-describe sakila.temp_table;
+# As you can check the calc is a varchar(22) column
+# 22 because that was the maximum length created by the 
+# concat(CrimeNumber, CrimeNumber) expression
+describe EDIT_DB.temp_table;
 

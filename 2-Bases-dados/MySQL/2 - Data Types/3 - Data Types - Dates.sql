@@ -3,18 +3,19 @@ these are the ones that help us to understand
 temporal events and they are crucial for 
 logging and database creation and updating.
 */
+ALTER TABLE EDIT_DB.GreaterManchesterCrime ADD COLUMN CrimeDate DATE
+UPDATE EDIT_DB.GreaterManchesterCrime SET CrimeDate = DATE(CrimeTS) WHERE CrimeNumber > 0
 
-describe sakila.film;
+describe EDIT_DB.GreaterManchesterCrime;
 
-# In the sakila.film we have the release_year, which
-# is a year column - and we have the last_update
-# which is a timestamp
+# In the EDIT_DB.GreaterManchesterCrime we have the CrimeTS, 
+# which is a timestamp column and CrimeDate, which is a date column
 
-select title, release_year, last_update
-from sakila.film;
+select CrimeNumber, CrimeID, CrimeDate
+from EDIT_DB.GreaterManchesterCrime;
 
-# Commonly used is also the DATE type
-# which is a date without the timepart
+# Commonly used is also the year types,
+# which is just a year.
 
 # One of the most common functions that one can use
 # with date types is the the datediff to find the 
