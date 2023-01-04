@@ -1,0 +1,37 @@
+1. Go to Data.gov
+2. Search for fdic failed banks
+3. Select the FDIC Failed Bank List
+4. We could download it or just use the webpage to import the data, which is better, so right click and copy link address
+5. Get Data and Transform data would be the parts associated to Data Discovery / Cleaning
+6. The two bottom icons on the left are associated to Data Modeling and Structure
+7. The upper icon is the one we will use for Data visualization
+8. One can use Publish / share on the upper right to share the reports
+9. Go to Get Data > Web, but notice that there are a ton of other options in the More... button
+10. Introduce the link and connect anonnimously
+11. Click Transform Data although you could access this step later on
+12. We will rename the query banklist into something more meaningful like "Failed Banks"
+13. Eliminate the column that is useless. For really wide sets, the best option is to use the choose columns tab and remove the Cert, Fund and Acquiring Institution 
+14. Reformat one column, in this case we would like to extract the year from the date column. Right click on the date and duplicate the column and in the new column, right click and select Transform > Year
+15. We would like to merge also the City and ST columns into one since sometimes there is a city name that is used in different states, so in order to make the city less ambiguous, we will merge them. Select the City and State columns and go to Add Column > Column From Examples > From All Columns. Since we want to merge these two in a specific way, we will provide one example and PowerBI will infere the pattern!
+16. Choose Close & Apply
+17. Let us now create a new table by going into the second icon on the left and then clicking on Table tools > New table
+18. Let us rename it into Calendar by changing the name on the left-hand side of the equal and use DAX to write CALENDARAUTO()
+19. Let us also add a new column called Year and use the DAX expression YEAR() and write 'Calendar' to reference the table and [Date] to specify the column in the table. This is YEAR('table'[col])
+20. Let us repeat this, but now a new column "Month Number" for the month and another one for the name "Month". For that we will use the FORMAT([Date],"parameter") and try the options: "mmmm", "mmm", "dddd", "mm-yyyy", etc but choose "mmmm"
+21. Back to the report view
+22. There is a mistake, with a purpose, that we will identify via visualization of the data.
+23. Let us add a stacked column chart and drag the Month column into the x-axis and Bank Name on the y-axis
+24. Seems weird, right? The issue is that we have not connected the tables! So PowerBI does not know how they are related.
+25. In order to do this, we have to go to the model view ---the third icon on the left panel
+26. Therefore, to stablish a relationship between the tables we need to join Date with Closing Date
+27. The second problem is that the order of the months is off. To fix it, go to the three dots > Sort Axis > Month and again the same for Month ascending. Ups! looks like it order them alphabetically. In order to change it into a reasonable sorting, select the Month column and go to Column tools > Sort > Month Number
+28. Let us now explore what we can do for measures
+29. For example, let us count how many banks do we have. Go to the Modeling tab and select new measure. Name it Total Banks and use the function COUNTROWS('Failed Banks')
+30. Let us create a new Stacked bar chart and select this new measure total banks as values. Then, we will slice it by State by selecting this column as axis. We can add extra slicing by, for example, selecting Year as the legend
+31. A cool feature is that if I now select GA, this will highlight the rest of the visualizations accordingly. But I could even select a color within GA!
+32. This interactions are also customizable by clicking a chart and then either going to Format > Edit Interactions or selecting a graphic and then going to the upper-right corner of the other visuals to determine their behaviour
+33. Regarding the visuals, we can customize anything by going to the paint roller below the visuals
+34. Another interesting feature is that you can use different themes for the reports and even create your own to have a standarized visual for your reports
+35. Finally, there is a cool thing that one can do, which is a Q&A, just by double-clicking or by selecting it from the visualizations, where we can ask questions about our data
+36. As a cool final thing, you can also customize your toolpit ---what happens when we hover the mouse over the visuals.
+
