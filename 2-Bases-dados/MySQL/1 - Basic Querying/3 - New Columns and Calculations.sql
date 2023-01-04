@@ -1,56 +1,58 @@
-/* One of the most common things we can do in SQL 
-is create new columns - These columns can be totally
-new or created using existing columns*/
+/* Um das coisas mais comuns que podemos fazer no SQL
+é criar novas colunas - Essas colunas podem ser totalmente
+novas ou criadas usando colunas existentes*/
 
-# Let's check using the actor table
-# Creating a person_role with the value 'actor' 
+# Vamos ver usando a tabela de atores
+# criando uma person_role com o valor 'Police Officer' 
 
 select *, 'Police Officer' as Responsible
 from EDIT_DB.GreaterManchesterCrime;
 
-# We will learn more advanced stuff using if else
-# later
+# Vamos aprender coisas mais avançadas usando if else
+# mais tarde
 
-# Let's now use an expression to build a new column
-# based on existing ones
+# Vamos agora usar uma expressão para criar uma nova coluna
+# baseada em colunas existentes
+# Observe como estamos a usar uma função aqui pela primeira
+# vez
 
-# Notice how we are using a function here for the first
-# time
 select Location, LSOA, concat(Location, LSOA) as full_address
 from EDIT_DB.GreaterManchesterCrime;
 
-# Something's odd! We can still add a comma and a space between the first and last name
+# Ainda podemos adicionar uma vírgula e 
+# um espaço entre o primeiro e o último nome
+
 select Location, LSOA, concat(Location, ', ', LSOA) as full_address
 from EDIT_DB.GreaterManchesterCrime;
 
-# We can also create new columns based on mathematical
-# expressions
-# We add an extra numerical column corresponding to a Crime number
+# Também podemos criar novas colunas com base em expressões matemáticas
+# Adicionamos uma coluna numérica adicional correspondente a um número de crimes
+
 ALTER TABLE EDIT_DB.GreaterManchesterCrime ADD COLUMN CrimeNumber INT UNIQUE NOT NULL AUTO_INCREMENT FIRST;
 select * from EDIT_DB.GreaterManchesterCrime;
 
-  
 select * , CrimeNumber * 100
 from EDIT_DB.GreaterManchesterCrime;
 
-# Most mathematical operations work the same way
-# as they do in the real world
+# A maioria das operações matemáticas funciona da mesma forma
+# como eles funcionam no mundo real
+
 select *, (CrimeNumber * 100)+10
 from EDIT_DB.GreaterManchesterCrime;
 
-# * is for multiplication
-# / is for division
-# + is for adding
-# - is for subtracting
+# * : multiplicação
+# / : divisão
+# + : somar
+# - : subtrair
 
-# Example of division:
+# Exemplo de divisão:
 select *, (CrimeNumber/100)+10
 from EDIT_DB.GreaterManchesterCrime;
 
-# There are also other commonly used expressions
-# such as logarithms or exponentials
-# that we can use
+# Também existem outras expressões comumente usadas
+# como logaritmos ou exponenciais
+# que podemos usar
 
-# Notice that if I don't use a from I can evaluate
-# the expression in a single return
+# Repare que se eu não usar um from, posso avaliar
+# a expressão em um único retorno
 select log(10);

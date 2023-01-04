@@ -1,1 +1,26 @@
-THIS IS THE README TO EXPLAIN HOW TO USE AND INSTALL MYSQL AND MYSQL WORKBENCH
+MySQL é um sistema de gerenciamento de banco de dados relacional (RDBMS) que é amplamente utilizado 
+em aplicações de web e em muitas outras aplicações. Ele é baseado em SQL (Structured Query Language), 
+uma linguagem de programação padrão para gerenciamento de banco de dados. 
+
+MySQL é compatível com a maioria dos sistemas operacionais, incluindo Windows, Linux e Mac OS.
+
+MySQL armazena dados em tabelas, que são conjuntos de linhas e colunas semelhantes a planilhas do Excel. 
+Cada linha representa um registro, enquanto cada coluna representa um campo específico em um registro. 
+Por exemplo, em uma tabela de usuários, cada linha pode representar um usuário diferente, 
+enquanto colunas como "nome" e "endereço de e-mail" representam campos específicos para cada usuário.
+
+Além de armazenar e recuperar dados, MySQL também fornece uma série de ferramentas para gerenciar e 
+proteger os dados armazenados. Isso inclui opções para criar usuários e definir permissões de acesso, 
+realizar backups de dados e restaurá-los em caso de falhas, e monitorar o desempenho do banco de dados. 
+MySQL é uma opção popular para aplicações de web devido à sua facilidade de uso e ampla compatibilidade 
+com a maioria das linguagens de programação.
+
+Neste curso vamos ver alguns dos casos de uso de MySQL, conhecendo conceitos como:
+- Queries Básicas;
+- Tipos de Dados;
+- Criar e Modificar Tabelas;
+- Combinar Tabelas;
+- Actualizar Informação;
+- Filtros Avançados;
+
+*SQL é particularmente usado na primeira fase do ecossistema de dados: extração e tratamento de informação.*

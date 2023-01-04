@@ -1,40 +1,40 @@
-# Select with filters  where title = 'BULL SHAWSHANK'
+# Seleccionar com filtros:
 select *
 from EDIT_DB.GreaterManchesterCrime
 where Type = 'Public order';
 
-# Different than clause
+# Clausula diferente de
 select *
 from EDIT_DB.GreaterManchesterCrime
 where Type != 'Public order';
 
-# Multiple filter statements can be passed
-# with IN
+# Podemos passar multiplos filtros com
+# a cláusula IN
 select *
 from EDIT_DB.GreaterManchesterCrime
 where Type IN ('Other theft', 'Burglary','Theft from the person','Shoplifting');
 
-# We can use OR for multiple causes
+# Podemos usar a condição ou para seleccionar uma clausula ou outra
 select *
 from EDIT_DB.GreaterManchesterCrime
 where Type = 'Shoplifting' OR DATE(CrimeTS) < '2018-08-18';
 
-# Comparison operators with numeric columns
+# Operadores de comparação com colunas numéricas
 select *
 from EDIT_DB.GreaterManchesterCrime
 where DATE(CrimeTS) < '2018-08-18';
 
-# Less than / equal
+# Menor ou igual
 select *
 from EDIT_DB.GreaterManchesterCrime
 where DATE(CrimeTS) <= '2018-08-18';
 
-# Greater than
+# Maior que
 select *
 from EDIT_DB.GreaterManchesterCrime
 where DATE(CrimeTS) > '2018-08-18';
 
-# Greater than / equal to
+# Maior que / igual a
 select *
 from EDIT_DB.GreaterManchesterCrime
 where DATE(CrimeTS) >= '2018-08-18';

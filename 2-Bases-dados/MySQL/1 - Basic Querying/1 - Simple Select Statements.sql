@@ -1,19 +1,20 @@
-# Simple select statement
+# Um select simples:
 select *
 from EDIT_DB.GreaterManchesterCrime;
 
-# Subset some columns
+# Seleccionar algumas colunas:
 select Type, Outcome
 from EDIT_DB.GreaterManchesterCrime;
 
-# You can also use alias to rename columns
+# Podemos também usar "alias" para seleccionar colunas com nomes
+# mais apropriados:
 select Type as crime_type, Outcome as sentence
 from EDIT_DB.GreaterManchesterCrime;
 
-# These are comments
-/* These are also more complex multi-line
-comments */
+# Podemos realizar comentários usando o símbolo #
+/* E comentários
+multi-linha! */
 
-# You can also use alias in table names
+# Também podemos usar alias em tabelas
 select crime_table.Type
 from EDIT_DB.GreaterManchesterCrime as crime_table;

@@ -1,18 +1,17 @@
-# Query Clauses in Selects mostly 
-# comprise of the following order
-
+# As cláusulas da consulta na seleção geralmente
+# compreendem a seguinte ordem
 # SELECT
-# FROM 
+# FROM
 # WHERE
-# GROUP BY 
+# GROUP BY
 # HAVING
 # ORDER BY
 
-/* We've already covered SELECT, FROM AND WHERE
- Let's cover GROUP BY - GROUP BY enables you to group data
- by some key. The simpler example is to apply a mean across a column
- grouped by some other column - let's see one example!
- */
+/* Já cobrimos SELECT, FROM E WHERE
+Vamos cobrir GROUP BY - GROUP BY permite agrupar dados
+por alguma chave. O exemplo mais simples é aplicar uma média em uma coluna
+agrupada por outra coluna - vamos ver um exemplo!*/
+
 ALTER TABLE EDIT_DB.GreaterManchesterCrime ADD CriminalNumber Int;
 UPDATE EDIT_DB.GreaterManchesterCrime SET CriminalNumber = FLOOR(RAND()*(4-1)+1) WHERE CrimeNumber > 1;
 
@@ -23,45 +22,46 @@ select Type, avg(CriminalNumber) as avg_number_of_criminals
 from EDIT_DB.GreaterManchesterCrime
 group by Type;
  
-/* Notice how we have the values aggregated by the other
-column - that may also called key in some contexts */
+/* Repare como temos os valores agregados pela outra
+coluna - que também pode ser chamada de chave em alguns contextos
 
-/* Having can complement the group by information
-by filtering based on information created
-- it is similar to WHERE but applies AFTER the 
-grouped information */
+Having pode complementar a informação do group by
+filtrando com base em informações criadas
 
-# Notice the following - this will yield in an error:
+é similar a WHERE mas se aplica DEPOIS da
+informação agrupada */
+
+# Repare no seguinte - isso gerará um erro:
+
 select Type, avg(CriminalNumber) as avg_number_of_criminals
 from EDIT_DB.GreaterManchesterCrime
 where avg_number_of_criminals>2
 group by Type;
 
-/* Because the column avg_rental_rate does not exist in the original table
-To filter something created during the query, we need to use having */
+/* Como a coluna avg_rental_rate não existe na tabela original
+para filtrar algo criado durante a consulta, precisamos usar having */
 
 select Type, avg(CriminalNumber) as avg_number_of_criminals
 from EDIT_DB.GreaterManchesterCrime
 group by Type
 having avg_number_of_criminals>2;
 
-# This also happens with columns created with alias
+# Isso também acontece com colunas criadas com alias
 select Type, CriminalNumber as number_of_criminals
 from EDIT_DB.GreaterManchesterCrime
 where number_of_criminals > 2;
 
 
-/* Order by is another clause that we can use 
-after all the other clauses, it sorts 
-the resulting table by what we want
-*/
+/* Order by é outra cláusula que podemos usar
+depois de todas as outras cláusulas, esta cláusula ordena
+a tabela resultante pelo que quisermos*/
 
 select Type, CriminalNumber, LSOA 
 from EDIT_DB.GreaterManchesterCrime
 where CriminalNumber > 2
 order by LSOA;
 
-# You can also order descendingly with the keyword desc
+# também podemos ordenar de forma decrescente com a palavra-chave desc
 select Type, CriminalNumber, LSOA 
 from EDIT_DB.GreaterManchesterCrime
 where CriminalNumber > 2
