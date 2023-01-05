@@ -1,0 +1,24 @@
+This exercise is simple. Let us play around with some data on the New York's Oil and Gas Annual Production: 1985 - 2000
+
+Use the web download of the data using the following url
+
+https://data.ny.gov/api/views/qcf2-zajk/rows.csv?accessType=DOWNLOAD
+
+or, if you would like to download it and load it into PowerBI (not recommended), here is the landing page
+
+https://catalog.data.gov/dataset/oil-and-gas-annual-production-1985-2000
+
+You will realise that there are a lot of columns in the table. Transform the data in order to keep the Company name, API hole number, Well Type, Well name, Town, Months in production, Gas Produced.
+
+Now, change the name of the table into something meaningfull like production Oil&GasProduction and let us modify also the Town column to include the especification that the city is indeed, in New York
+
+Time to do the nice plots!
+
+The simplest one is straightforward. Let us check how much gas has been produced by Town using a Stacked bar chart.
+Also, let us check how much Gas has been produced of each type, but now with a table next to a Stacked bar.
+Now, I am curious to see if some well types evenly distributed in the different towns or if in the differnt towns, the well types are the same. Uhh, see something interesting? Seems like Owego has almost no Well of type GD, so the same well types are located next to each other!
+I am now interested in showing this to someone who is not very familiar with the State of New York, so let us create a graphic made for them to understand the locations, a Map visualization. 	
+Now, I want to check who are the Top 10 Companies and what is their relative weight. For that I believe a Pie Chart will suffice, but notice that we will have to add a filter to include only the Top 10 based on their production.
+
+
+
