@@ -1,3 +1,18 @@
+ipython==7.25.0
+nbgrader==0.6.2
+notebook==6.2.0
+numpy==1.20.3
+pandas==1.2.4
+matplotlib==3.3.4
+scikit-learn==0.24.2
+plotchecker
+scipy==1.6.3
+seaborn==0.11.1
+pycountry_convert
+category-encoders==2.2.2
+pydotplus==2.0.2
+mlxtend==0.18.0
+imbalanced-learn==0.8.0
 alembic==1.4.2            # via nbgrader
 attrs==19.3.0             # via jsonschema
 backcall==0.1.0           # via ipython
@@ -12,7 +27,6 @@ idna==2.9                 # via requests
 importlib-metadata==1.6.0  # via jsonschema
 ipykernel==5.2.1          # via ipywidgets, jupyter, jupyter-console, notebook, qtconsole
 ipython-genutils==0.2.0   # via nbformat, notebook, qtconsole, traitlets
-ipython==7.13.0           # via ipykernel, ipywidgets, jupyter-console
 ipywidgets==7.5.1         # via jupyter
 jedi==0.17.0              # via ipython
 jinja2==2.11.2            # via nbconvert, notebook
@@ -26,10 +40,6 @@ markupsafe==1.1.1         # via jinja2, mako
 mistune==0.8.4            # via nbconvert
 nbconvert==5.6.1          # via jupyter, nbgrader, notebook
 nbformat==5.0.6           # via ipywidgets, nbconvert, nbgrader, notebook
-nbgrader==0.6.1           # via -r requirements.in
-notebook==6.0.3           # via jupyter, nbgrader, widgetsnbextension
-numpy==1.18.3             # via pandas
-pandas==1.0.3             # via -r requirements.in
 pandocfilters==1.4.2      # via nbconvert
 parso==0.7.0              # via jedi
 pexpect==4.8.0            # via ipython
@@ -58,4 +68,3 @@ wcwidth==0.1.9            # via prompt-toolkit
 webencodings==0.5.1       # via bleach
 widgetsnbextension==3.5.1  # via ipywidgets
 zipp==3.1.0               # via importlib-metadata
-scikit-learn==0.23.1
