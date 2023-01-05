@@ -1,0 +1,25 @@
+Este exercício é simples. Vamos brincar com alguns dados sobre a produção anual de petróleo e gás de Nova York: 1985-2000.
+
+Use o download da web dos dados usando o seguinte URL:
+
+https://data.ny.gov/api/views/qcf2-zajk/rows.csv?accessType=DOWNLOAD
+
+Ou, se você quiser baixá-lo e carregá-lo no PowerBI (não recomendado), aqui está a página de destino:
+
+https://catalog.data.gov/dataset/oil-and-gas-annual-production-1985-2000
+
+Você perceberá que há muitas colunas na tabela. Transforme os dados para manter os seguintes dados: Company name, API hole number, Well Type, Well name, Town, Months in production, Gas Produced.
+
+Agora, altere o nome da tabela para algo significativo, como produção Oil&GasProduction e modifique também a coluna Town para incluir a especificação de que a cidade é, de fato, em Nova York.
+
+Hora de fazer gráficos!
+
+O mais simples é direto. Vamos ver quanto gás foi produzido por Town usando um gráfico "stacked bar chart".
+Além disso, vamos ver quanto gás foi produzido de cada tipo, mas agora com uma tabela ao lado de uma "stacked bar chart".
+Agora, estou curioso para ver se alguns tipos de poços são distribuídos de maneira uniforme nas diferentes cidades ou se, nas diferentes cidades, os tipos de poços são os mesmos...
+
+Uhh, conseguem ver alguma coisa interessante? Parece que Owego quase não tem poço do tipo GD. Portanto, os mesmos tipos de poços estão localizados um ao lado do outro!
+
+Agora estou interessado em mostrar os dados a umas pessoas que não estão muito familiarizada com o estado de Nova York, então vamos criar um gráfico feito para que eles entendam as localizações, uma visualização do mapa.
+
+Agora, quero ver quais são as 10 principais empresas e qual é o seu peso relativo. Para isso, acredito que um gráfico "Pie Chart" será suficiente, mas observe que precisaremos adicionar um filtro para incluir apenas as 10 principais com base em sua produção.
