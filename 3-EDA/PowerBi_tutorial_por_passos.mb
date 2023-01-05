@@ -1,0 +1,36 @@
+1. Vá para o Data.gov
+2. Busque "fdic failed banks" (bancos falidos FDIC)
+3. Selecione a FDIC Failed Bank List
+4. Poderíamos baixá-lo ou apenas usar a página da web para importar os dados, o que é melhor, então clique com o botão direito e copie o endereço do link
+5. Get Data e Transform Data seriam as partes associadas à Descoberta de Dados/Limpeza
+6. Os dois ícones inferiores à esquerda estão associados a Modelagem de Dados e Estrutura
+7. O ícone superior é o que usaremos para Visualização de Dados
+8. É possível usar Publicar/compartilhar no canto superior direito para compartilhar os relatórios
+9. Vá para Get Data > Web, mas observe que há uma série de outras opções no botão More...
+10. Introduza o link e conecte-se anonimamente
+11. Clique em Transform Data, embora você possa acessar essa etapa mais tarde
+12. Vamos renomear a consulta banklist para algo mais significativo, como "Failed Banks"
+13. Elimine a coluna que é inútil. Para conjuntos realmente amplos, a melhor opção é usar a guia "Choose Columns" e remover as colunas Cert, Fund e Acquiring Institution
+14. Mudar uma coluna. Neste caso, gostaríamos de extrair o ano da coluna Date. Clique com o botão direito na Date e duplique a coluna e, na nova coluna, clique com o botão direito e selecione Transform > Year
+15. Gostaríamos de misturar também as colunas City e State em uma, já que às vezes há um nome de cidade que é usado em diferentes estados, para tornar a cidade menos ambígua, vamos mesclá-las. Selecione as colunas City e State e vá para Add Column > Column From Examples > From All Columns. Como queremos mesclar essas duas de uma maneira específica, forneceremos um exemplo e o PowerBI inferirá o padrão!
+16. Escolha Close & Apply
+17. Agora, criaremos uma nova tabela indo para o segundo ícone à esquerda e, em seguida, clicando em Table tools > New table
+18. Renomearemos para Calendar alterando o nome no lado esquerdo do igual e usaremos o DAX para escrever CALENDARAUTO()
+19. Vamos adicionar também uma nova coluna chamada Year e usar a expressão DAX YEAR() e escrever 'Calendar' para fazer referência à tabela e [Date] para especificar a coluna na tabela. Isto é, YEAR('table'[col])
+20. Vamos repetir isso, mas agora uma nova coluna "Month Number" para o mês e outra para o nome "Month". Para isso, usaremos o FORMAT([Date],"parameter") e tentaremos as opções: "mmmm", "mmm", "dddd", "mm-yyyy", etc, mas escolheremos "mmmm"
+21. Volte para a visualização do relatório
+22. Há um erro, com um propósito, que identificaremos através da visualização dos dados
+23. Vamos adicionar um gráfico "stacked column chart" e arrastar a coluna Month para o eixo x e o Bank Name no eixo y
+24. Parece estranho, certo? O problema é que não conectamos as tabelas! Portanto, o PowerBI não sabe como elas estão relacionadas.
+25. Para fazer isso, temos que ir para a visualização do modelo --- o terceiro ícone no painel esquerdo
+26. Portanto, para estabelecer uma relação entre as tabelas, precisamos juntar Date com Closing Date
+27. O segundo problema é que a ordem dos meses está incorreta. Para consertar isso, vá para os três pontos > Sort Axis > Month e novamente o mesmo para escolher Month ascending. Ups! Parece que os ordena alfabeticamente. Para mudá-los para uma ordenação razoável, selecione a coluna Month e vá para Column tools > Sort > Month Number
+28. Vamos agora explorar o que podemos fazer para medidas
+29. Por exemplo, vamos contar quantos bancos temos. Vá para a aba Modeling e selecione uma nova medida. Chame-a de Total Banks e use a função COUNTROWS('Failed Banks')
+30. Vamos criar um novo gráfico "stacked bar chart" e selecionar essa nova medida total banks como valores. Em seguida, vamos dividi-lo por State selecionando essa coluna como eixo. Podemos adicionar uma divisão adicional selecionando Year como legenda.
+31. Uma funcionalidade interessante é que, se eu agora selecionar GA, isso destacará o restante das visualizações de acordo. Mas eu poderia até mesmo selecionar uma cor dentro de GA!
+32. Essas interações também são personalizáveis clicando em um gráfico e, em seguida, indo para Format > Edit Interactions ou selecionando um gráfico e, em seguida, indo para o canto superior direito das outras visualizações para determinar o seu comportamento
+33. Em relação às visualizações, podemos personalizar qualquer coisa indo para o rolo de pintura abaixo das visualizações
+34. Outra funcionalidade interessante é que pode usar diferentes temas para os relatórios e até criar o seu próprio para ter uma visual padronizada para seus relatórios
+35. Finalmente, há uma coisa fixe que podemos fazer, que é uma Q&A (pergunta e resposta), basta clicar duas vezes no fundo ou selecioná-lo nas visualizações, onde podemos fazer perguntas sobre os nossos dados
+36. Como uma coisa final fixe, também pode personalizar a sua toolpit ---o que acontece quando passamos o mouse sobre as visualizações
