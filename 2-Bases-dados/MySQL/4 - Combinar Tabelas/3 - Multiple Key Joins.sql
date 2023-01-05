@@ -1,8 +1,12 @@
-# Another common thing to find in SQL tables is to
-# have joins by two columns. This is extremely 
-# useful when we have composite keys (more than one column)
+/*
+Outra coisa comum em código SQL é ter
+joins por duas colunas. 
 
-# Let's see an example:
+Isso é extremamente
+útil quando temos chaves compostas (mais de uma coluna)
+Vamos ver um exemplo:
+
+*/
 
 CREATE TEMPORARY TABLE sandbox.customer_month(
 	customer_id INT,
@@ -28,64 +32,64 @@ insert into sandbox.customer_balance (
 ) values (1, 201903, 10.00), (1, 201904, 15.00),
  (2, 201903, 1524.00), (2, 201904, 225.00), (3, 201905, 360.00);
 
-# Should I just join by customer ID?
-# Let's see
+# devemos apenas fazer o join pelo ID do cliente?
+# Verificando:
+
 select a.customer_id, a.customer_name, b.month, b.balance
 from sandbox.customer_month as a
 inner join sandbox.customer_balance as b
 on a.customer_id = b.customer_id;
 
-# Why do we have so many rows? 
-# Because we've produced duplicates!
+# Porque temos tanto registos?
+# Porque produzimos duplicados!
 
-# Duplicates are one of the most common
-# mistakes beginners make when doing queries
-# in sql 
+# Dupplicados são um dos erros mais comuns
+# que iniciantes cometem ao fazer queries
+# em sql
+# Às vezes queremos fazer duplicados de propósito
+# por exemplo, se tivéssemos apenas um único customer_id
+# na tabela customer_month. como temos várias linhas
+# para o mesmo cliente, essas serão duplicadas porque
+# cada linha terá 2 correspondências com a tabela correta para customer_id = 1
+# e três vezes para customer_id = 2
 
-# You sometimes want to produce duplicates on purpose
-# for example, if we would only have a single customer_id
-# on the customer_month table. as we have several lines
-# for the same customer, these will be duplicated because
-# each line will match 2 times with the right table for customer_id = 1
-# and three times for customer_id = 2 
-
-# An example:
+# Um exemplo:
 select customer_id 
 from sandbox.customer_month;
 
-# customer ID_1 is repeated 3 times
-# customer ID_2 is reapeat 4 times
-# in the customer_month 
+# customer ID_1 está repetido 3 vezes
+# customer ID_2 is repetido 4 vezes
+# na customer_month
 
-# On the right table we have two rows with customer_id 1 and 2:
+# Na tabela da direito temos dois registos: customer_id 1 and 2:
 select customer_id from 
 sandbox.customer_balance;
 
-# The result will be the multiplication of these "keys" 
-# 3 * 2, 6 rows for customer id 1
-# 4 * 2, 8 rows for customer id 2
+# O resultado será a multiplicação destas "chaves" 
+# 3 * 2, 6 registos para customer id 1
+# 4 * 2, 8 registos para customer id 2
 select a.customer_id, b.month, b.balance
 from sandbox.customer_month as a
 inner join sandbox.customer_balance as b
 on a.customer_id = b.customer_id;
 
-# How to solve this? The primary keys of our table
-# are Customer ID + Month so we can use a multiple column 
-# join!
+# Como resolver isso? As chaves primárias de nossa tabela
+# são Customer ID + Month, então podemos usar um join de múltiplas colunas!
+
 select a.customer_id, a.customer_name, b.month, b.balance
 from sandbox.customer_month as a
 inner join sandbox.customer_balance as b
 on a.customer_id = b.customer_id and
 a.month = b.month;
 
-# Notice that now we have the correct inner join. As we only
-# have two balances for March and April on the balances table
-# those are the only ones carried forward in the joined table.
+# Repare que agora temos o inner join correto. Como só
+# temos dois saldos para março e abril na tabela de saldos
+# esses são os únicos que foram mantidos na tabela unida sem mais linhas duplicadas, 
+# pois cada chave de join é única (par Customer_Id + Month).
 
-# No more duplicate rows because each join key is unique (pair Customer_Id + Month).
+# Às vezes você pode querer produzir duplicados de propósito - imaginando
+# que tinhamos algo assim:
 
-# Sometimes you may want to produce duplicates on purpose - imagining
-# we had something like this: 
 CREATE TEMPORARY TABLE sandbox.unique_customer(
 	customer_id INT,
     PRIMARY KEY (customer_id)
@@ -98,10 +102,11 @@ insert into sandbox.unique_customer (
     
 select * from sandbox.unique_customer;
 
-# As we have unique customer_ids on the left table
-# we may want to get the balance for different months
-# in this case we can do a join only with the customer id 
-# as the months will generate a row by each month of balance
+# Como temos IDs de clientes únicos na tabela da esquerda
+# podemos querer obter o saldo para diferentes meses
+# neste caso, podemos fazer um join apenas com o ID do cliente
+# pois os meses gerarão uma linha por cada mês de saldo.
+
 select a.customer_id, b.month, b.balance
 from sandbox.unique_customer as a
 inner join sandbox.customer_balance as b

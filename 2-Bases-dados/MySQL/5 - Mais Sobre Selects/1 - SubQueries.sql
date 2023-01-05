@@ -1,6 +1,6 @@
-# SubQueries are a really powerful concept in
-# SQL - they enable you to compound on several instructions
-# Let's check!
+# Subqueries são um conceito realmente poderoso em
+# SQL - elas permitem que você componha várias instruções complexas:
+
 ALTER TABLE EDIT_DB.GreaterManchesterCrime ADD COLUMN PoliceOfficerID VARCHAR(3)
 UPDATE EDIT_DB.GreaterManchesterCrime SET PoliceOfficerID = floor(rand()*100) WHERE CrimeNumber > 0
 
@@ -18,9 +18,9 @@ ELT(0.5 + RAND() * 6, 'Schmidt', 'Brown', 'Johnson', 'Garcia', 'Miller', 'Jones'
 );
 
 	
-# Let's start with a by doing a join on EDIT_DB.GreaterManchesterCrime 
-# with EDIT_DB.Staff to obtain the name of the Police Officer
-# in charge of the Case, instead of the officer's id
+# Vamos começar por fazer um join em EDIT_DB.GreaterManchesterCrime
+# com EDIT_DB.Staff para obter o nome do policia
+# responsável pelo caso, em vez do ID do policia.
 
 select a.CrimeID, a.PoliceOfficerID, b.Name, b.Surname
 from EDIT_DB.GreaterManchesterCrime as a 
@@ -28,14 +28,11 @@ inner join
 EDIT_DB.Staff as b 
 on a.PoliceOfficerID = b.PoliceOfficerID;
 
-# This will give me the officer id, name and surname 
-# for each crime.
-# I can treat this as a table and do everything we've learned
-# so far with tables 
+# isto vai-me retornar o officer id, name and surname 
+# para cada crime.
+# Posso tratar tudo isto como uma tabela, tal como fizemos até aqui
 
-# How? By enclosing our instruction in parenthesis and giving
-# it an alias!
-
+# Como? Envolvendo esta expressão em parentesis e usando um alias!
 
 select my_query.* from 
 (select a.PoliceOfficerID, b.Name, b.Surname
@@ -45,7 +42,7 @@ EDIT_DB.Staff as b
 on a.PoliceOfficerID = b.PoliceOfficerID) as my_query
 ;
 
-# I can do a group by on top of this!
+# Posso até fazer um group by em cima desta query:
 select my_query.Name, my_query.Surname, avg(CriminalNumber) as avg_numb_criminals 
 from 
 (select a.CriminalNumber, a.PoliceOfficerID, b.Name, b.Surname
@@ -57,7 +54,7 @@ group by my_query.Name, my_query.Surname
 order by my_query.Name, my_query.Surname
 ;
 
-# Let's see another example - with a double group by:
+# Vamos ver outro exemplo, com um duplo group by:
 
 select my_query.Name, my_query.Surname, sum(CriminalNumber) as total_numb_criminals 
 from 
@@ -70,8 +67,8 @@ group by my_query.Name, my_query.Surname
 order by my_query.Name, my_query.Surname
 ;
 
-# Always refer to the primary keys of the table 
-# when you have these questions. In this case, this would
-# be easy to understand just by visiting the structure
-# of the table - as the primary key is a rental_id that identifies
-# the row.
+# Sempre refira às chaves primárias da tabela
+# quando tiver dúvidas. 
+# Neste caso, seria fácil entender o que fazer vendo a estrutura
+# da tabela e verificando que a chave primária é um rental_id que identifica
+# a linha.

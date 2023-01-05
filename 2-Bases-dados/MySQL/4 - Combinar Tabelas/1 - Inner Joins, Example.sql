@@ -1,15 +1,13 @@
-# One of the most common things to do in SQL 
-# is combining tables
+/* 
+Um das coisas mais comuns que fazemos em SQL é combinar tabelas.
+O conceito de combinar tabelas é chamado de "join".
+Há vários tipos de join que pode verificar neste recurso:
+https://www.w3schools.com/sql/sql_join.asp
+*/
 
-# The concept of combining tables is called "join"
+# Vamos ver um INNER JOIN primeiro
 
-# There are multiple join types that you can
-# check in this resource: https://www.w3schools.com/sql/sql_join.asp
-
-# Let us first see the INNER JOIN 
-
-# Building two temporary tables for exemplification
-# and inserting some data
+# Vamos primeiro construir duas tabelas exemplo
 CREATE TEMPORARY TABLE sandbox.customers(
 	customer_id INT AUTO_INCREMENT PRIMARY KEY,
 	customer_name varchar(255) NOT NULL
@@ -28,27 +26,22 @@ insert into sandbox.customer_country (
 	customer_id, customer_country
 ) values (1, 'USA'), (3, 'USA'), (4, 'UK'), (5, 'UK');
 
-# If I want to pickup the country of each customer
-# what key can I use?
+# Se eu quero perceber de que país é cada cliente, como posso
+# combinar isso numa tabela?
 
-
-
-# Let us check:
+# Vamos ver:
 select cust.customer_id, cust.customer_name, country.customer_country
 from sandbox.customers as cust
 inner join sandbox.customer_country as country
 on cust.customer_id = country.customer_id;
 
-# We referrence the left table before 
-# the keyword "inner join" and the right table
-# after the keyword.
-# On the "on" clause, we enter they joining key - it
-# can be a single column or a multiple one
+/*
+Referenciamos a tabela da esquerda antes da palavra-chave
+"inner join" e a tabela da direita depois da palavra-chave.
 
-# Inner joins retrieves only everything that has a correspondece between
-# the two tables 
-
-# Notice that "Adam" is not on the output query
-# Why? Because we don't have the "Adam" key - in this case customer_id = 2
-# in the customer_country table 
+Na cláusula "on", inserimos a chave de união - pode ser uma única coluna ou múltiplas.
+Inner joins combina apenas tudo que tem correspondência entre as duas tabelas.
+Repare que "Adam" não está na saída da query. Porquê? Porque não temos a chave
+"Adam" - neste caso customer_id = 2 - na tabela customer_country.
+*/
 

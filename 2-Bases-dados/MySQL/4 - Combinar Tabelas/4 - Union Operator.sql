@@ -1,9 +1,12 @@
-# Another cool way to combine tables is to use set operators 
-# such as UNION - other operators in this context are INTERSECT
-# and EXCEPT but they are not supported by MYSQL
+/*
+Outra forma interessante de combinar tabelas é usar operadores de conjunto
+como UNION - outros operadores neste contexto são INTERSECT
+e EXCEPT, mas eles não são suportados pelo MYSQL
 
-# Let's create two different tables with sales and orders
-# from different stores
+Vamos criar duas tabelas diferentes com vendas e pedidos
+de lojas diferentes
+
+*/
 
 create temporary table sandbox.store_1 (
 	invoice_id smallint primary key,
@@ -32,23 +35,21 @@ insert into sandbox.store_2 (
 	invoice_id, item_quantity, order_value, product
 ) values (652, 15, 18.2, 'Cat Toy'), (685, 50, 21.3, 'Cat Food');
 
-# Let's append all the orders in a single table
+# Vamos juntar as tabelas de orders numa tabela único
 select invoice_id, item_quantity, order_value, product
 from sandbox.store_1
 union
 select invoice_id, item_quantity, order_value, product
 from sandbox.store_2;
 
-# Union all retains duplicates (there is no case in our tables)
-# Let's append all the orders in a single table
+# union all combina todos os dados, até duplicados:
 select invoice_id, item_quantity, order_value, product
 from sandbox.store_1
 union all
 select invoice_id, item_quantity, order_value, product
 from sandbox.store_2;
 
-# We can also use where clauses to produce unions
-# that are bounded
+# também podemos combinar isto com cláusulas where:
 select invoice_id, item_quantity, order_value, product
 from sandbox.store_1
 where item_quantity >= 100
