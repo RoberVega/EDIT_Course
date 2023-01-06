@@ -1,5 +1,5 @@
-# Create a new table called Students and add
-# information about students
+# Criar uma nova tabela chamada estudantes 
+# e adicionar alguns estudantes:
 
 create table sandbox.students (
 	student_id integer,
@@ -16,53 +16,52 @@ insert into sandbox.students (
              (4, 'Anne Smith', '2000-01-02', 'Mathematics'),
              (5, 'May John', '2000-06-06', 'History');
 
-# Updating Information on Tables
-# Let's imagine that we collected information about students
-# but we got May John's favorite class wrong - she really likes Mathematics!
+# Atualizando informações em tabelas
+# Vamos imaginar que temos informações sobre estudantes, 
+# mas acabamos por errar a matéria favorita de May John - ela gosta de Matemática!
 
-# How can we update this table without recreating it or deleting the row?
+# Como podemos atualizar esta tabela sem recriá-la ou excluir a linha?
 
-# We have the UPDATE -> SET -> WHERE combination
+# Temos a combinação UPDATE -> SET -> WHERE
 
-# We need to turn off safe update mode
+# Precisamos desativar o modo de atualização segura:
 SET SQL_SAFE_UPDATES = 0;
 
 update sandbox.students
 set favorite_class = "Mathematics"
 where student_id = 5;
 
-# Let's now look and the sandbox.students
+# Vamos agora ver a nossa tabela
 select * from sandbox.students;
 
-# Cool, we've just changed "May John's" favorite class!
+# Acabamos de mudar a matéria favorita de May John!
 
-# Cool part? Everything we've learned with where applies 
-# here, for example using multiple conditions
+# Tudo o que aprendemos com o where se aplica aqui, por exemplo, usando múltiplas condições.
 
-# Imagining we would like to change favorite_class 
-# of multiple students at the same time
+# Imaginando que gostaríamos de alterar a favorite_class de múltiplos estudantes ao mesmo tempo.
 update sandbox.students
 set favorite_class = "Arts"
 where student_full_name = 'Joe Doe' or student_full_name = 'John Smith';
 
 select * from sandbox.students;
 
-# Of course, updating these values are also restricted
-# In our case, we can't set the name of the student 
-# to null because of the properties of the table
+# Claro, a atualização desses valores também está restrita.
+# No nosso caso, não podemos definir o nome do estudante como null 
+# devido às propriedades da tabela.
+
 update sandbox.students
 set student_full_name = NULL
 where student_id = 1;
 
-# You can also update multiple columns at once:
+# Também podemos actualizar várias tabelas ao mesmo tempo:
 update sandbox.students
 set student_full_name = "John", favorite_class = "Mathematics"
 where student_id = 1;
 
 select * from sandbox.students;
 
-# Be very mindful of having a where clause or 
-# else you will end up updating the entire table
+# Tenha muita atenção em ter uma cláusula where
+# se não a utilizar pode acabar por actualizar a tabela inteira.
 update sandbox.students
 set student_full_name = "John";
 
