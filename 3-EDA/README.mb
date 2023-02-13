@@ -4,3 +4,16 @@ Um ambiente virtual do Python é um ambiente isolado que permite instalar pacote
 Neste caso iremos utilizar o programa anaconda para instalar os nossos pacotes. Carrege no link em baixo e procure o 64-Bit Graphical Installer para Windows
 https://www.anaconda.com/products/distribution
 Baixe o anaconda e instale. 
+A partir dai, podemos seguir os passos do tutorial próximo link para instalar os pacotes contidos no ficheiro requirements.txt fornecido na pasta original deste curso. Só assim poderemos correr os nossos notebooks de jupyter.
+
+https://linuxhint.com/conda-install-requirements-txt/
+
+Uma vez criado o environment e instalados os pacotes, temos de ir ao terminal, activar o virtual environment com o comando
+
+conda active nome_do_environment
+
+e depois ir à pasta do nosso curso dentro de computador e executar o comando
+
+jupyter notebook
+
+isto irá abrir um servidor local onde poderemos trabalhar e visualizar os notebooks de jupyter.
