@@ -1,1 +1,6 @@
-THIS IS THE README TO EXPLAIN THE COURSE STRUCTURE
+Este curso é estruturado da seguinte forma:
+
+O primeiro diretório corresponde a um arquivo PowerPoint com uma introdução geral ao tema da Ciência de Dados.
+O segundo diretório contém materiais sobre bancos de dados relacionais e não relacionais, com alguma introdução ao SQL via MySQL workbench e alguma introdução a bancos de dados não SQL via MongoDB e MongoDB compass.
+O terceiro diretório contém uma introdução à Análise Exploratória de Dados, realizada via Python, e dois documentos curtos que servem como introdução ao PowerBI.
+O quarto diretório contém materiais sobre Aprendizado de Máquina, todos via Python.
