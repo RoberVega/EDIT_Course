@@ -1,1 +1,6 @@
-THIS IS THE README TO EXPLAIN HOW TO USE VENVS WITH ANACONDA AND CONDA
+Esta parte da formação está baseada em Python. Em particular, iremos utilizar um virtual environment para correr os nossos scripts em Jupyter notebook. 
+Um ambiente virtual do Python é um ambiente isolado que permite instalar pacotes e gerenciar suas dependências de forma independente do sistema ou de outros projetos. Isso é útil para evitar conflitos entre versões de pacotes ou para ter certeza de que suas dependências são as corretas para o seu projeto. Você pode criar vários ambientes virtuais e ativá-los e desativá-los conforme necessário.
+
+Neste caso iremos utilizar o programa anaconda para instalar os nossos pacotes. Carrege no link em baixo e procure o 64-Bit Graphical Installer para Windows
+https://www.anaconda.com/products/distribution
+Baixe o anaconda e instale. 
