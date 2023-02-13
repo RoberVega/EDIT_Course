@@ -1,1 +1,6 @@
-THIS IS THE README TO EXPLAIN THE COURSE STRUCTURE
+This course is structured as follows:
+
+The first folder corresponds to a PowerPoint file with a general introduction to the topic of Data Science.
+The second folder contains materials on relational and non-relational databases, with some introduction to SQL via MySQL workbench and some introduction to non-SQL databases via MongoDB and MongoDB compass
+The third folder contains an introduction to Exploratory Data Analysis, done via Python, and two short documents that serve as an introduction to PowerBI.
+The fourth folder contains materials on Machine Learning, all via Python.
